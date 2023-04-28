@@ -8,6 +8,13 @@ const curso = (sequelize, DataTypes) => {
       ch: {
         type: DataTypes.INTEGER,
       },
+      categoria_id:{
+        type: DataTypes.INTEGER,
+        reference:{
+          model: "categoria",
+          key: "id"
+        }
+      }
     },
     {
       tableName: "curso",

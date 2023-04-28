@@ -20,6 +20,7 @@ router.post(
       .isNumeric()
       .isLength({ min: 2 })
       .withMessage("O campo ch deve ser numérico apenas"),
+    body("categoria_id").isNumeric().withMessage("O campo categoria deve ser inteiro é obrigatório"),
   ],
   async (req, res) => {
     // caso encontre erros, ficará nessa variável errors
@@ -29,8 +30,8 @@ router.post(
     }
 
     //se os dados forem válidos, o sistema executará aqui
-    const { nome, ch } = req.body;
-    await cursoController.adicionar({ nome, ch });
+    const { nome, ch, categoria_id } = req.body;
+    await cursoController.adicionar({ nome, ch, categoria_id });
     res.status(201).send("Curso criado com sucesso!");
   }
 );
