@@ -11,6 +11,11 @@ router.get("/", async (req, res) => {
   res.json(cursos);
 });
 
+router.get("/comCategoria", async (req, res) => {
+  const cursos = await cursoController.getAll();
+  res.json(cursos);
+});
+
 router.post(
   "/create",
   [

@@ -17,4 +17,3 @@ const categoria = (sequelize, DataTypes) => {
   };
   
   export default categoria;
-  
