@@ -4,12 +4,13 @@ import { cursoController } from "../controller/index.js";
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
-  const cursos = await cursoController.getAll();
+router.get("/:curso_id", async (req, res) => {
+  const curso_id = req.params.curso_id;
+  const cursos = await cursoController.getByID(curso_id)
   res.json(cursos);
 });
 
-router.get("/comCategoria", async (req, res) => {
+router.get("/", async (req, res) => {
   const cursos = await cursoController.getAll();
   res.json(cursos);
 });

@@ -6,6 +6,16 @@ export default class CursoController {
     this.curso = CursoModel;
   }
 
+  async getByID(id) {
+    const c = this.curso.findOne({
+      where: {
+        id: id,
+      },
+      include: categoria,
+    });
+    return c;
+  }
+
   async getAll() {
     const cursos = await this.curso.findAll({include: categoria});
     return cursos;
