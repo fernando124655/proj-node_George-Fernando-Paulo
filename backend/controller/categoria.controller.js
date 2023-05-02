@@ -2,17 +2,12 @@ export default class CategoriaController {
     constructor(CategoriaModel) {
       this.categoria = CategoriaModel;
     }
-  
+
     async getAll() {
       const categoria = await this.categoria.findAll();
       return categoria;
     }
-  
-    async getAllComCategoria() {
-      const categoria = await this.categoria.findAll();
-      return categoria;
-    }
-  
+    
     async adicionar(categoriaDTO) {
       try {
         console.log(categoriaDTO);
