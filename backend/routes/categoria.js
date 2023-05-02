@@ -1,10 +1,8 @@
 import express from "express";
-import { categoria } from "../models/index.js";
-import { CategoriaController } from "../controller/categoria.controller.js";
 import { body, validationResult } from "express-validator";
-const router = express.Router();
+import { categoriaController } from "../controller/index.js";
 
-const categoriaController = new CategoriaController(categoria);
+const router = express.Router();
 
 router.get("/", async (req, res) => {
   const categoria = await categoriaController.getAll();

@@ -1,10 +1,8 @@
 import express from "express";
-import { curso } from "../models/index.js";
-import { CursoController } from "../controller/curso.controller.js";
 import { body, validationResult } from "express-validator";
-const router = express.Router();
+import { cursoController } from "../controller/index.js";
 
-const cursoController = new CursoController(curso);
+const router = express.Router();
 
 router.get("/", async (req, res) => {
   const cursos = await cursoController.getAll();
@@ -25,7 +23,7 @@ router.post(
       .isNumeric()
       .isLength({ min: 2 })
       .withMessage("O campo ch deve ser numérico apenas"),
-    body("categoria_id").isNumeric().withMessage("O campo categoria deve ser inteiro é obrigatório"),
+    body("categoria_ids").notEmpty().isArray().withMessage("O campo categoria_ids deve ser inteiro é obrigatório"),
   ],
   async (req, res) => {
     // caso encontre erros, ficará nessa variável errors
@@ -35,8 +33,8 @@ router.post(
     }
 
     //se os dados forem válidos, o sistema executará aqui
-    const { nome, ch, categoria_id } = req.body;
-    await cursoController.adicionar({ nome, ch, categoria_id });
+    const { nome, ch, categoria_ids } = req.body;
+    await cursoController.adicionar({ nome, ch, categoria_ids });
     res.status(201).send("Curso criado com sucesso!");
   }
 );

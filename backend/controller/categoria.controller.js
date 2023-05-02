@@ -1,4 +1,4 @@
-export class CategoriaController {
+export default class CategoriaController {
     constructor(CategoriaModel) {
       this.categoria = CategoriaModel;
     }

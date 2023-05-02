@@ -3,6 +3,7 @@
 
 ### custom ###
 backend/config/database.js
+.vscode/
 
 ### Node ###
 # Logs

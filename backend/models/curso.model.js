@@ -1,19 +1,10 @@
-const curso = (sequelize, DataTypes) => {
-  const Curso = sequelize.define(
-    "Curso",
-    {
+const Curso = (sequelize, DataTypes) => {
+  const Curso = sequelize.define("Curso", {
       nome: {
         type: DataTypes.STRING,
       },
       ch: {
         type: DataTypes.INTEGER,
-      },
-      categoria_id:{
-        type: DataTypes.INTEGER,
-        reference:{
-          model: "categoria",
-          key: "id"
-        }
       }
     },
     {
@@ -23,4 +14,5 @@ const curso = (sequelize, DataTypes) => {
   return Curso;
 };
 
-export default curso;
+
+export default Curso;

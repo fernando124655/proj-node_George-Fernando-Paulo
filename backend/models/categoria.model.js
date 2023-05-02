@@ -1,4 +1,4 @@
-const categoria = (sequelize, DataTypes) => {
+const Categoria = (sequelize, DataTypes) => {
     const Categoria = sequelize.define(
       "Categoria",
       {
@@ -16,4 +16,4 @@ const categoria = (sequelize, DataTypes) => {
     return Categoria;
   };
   
-  export default categoria;
+export default Categoria;
