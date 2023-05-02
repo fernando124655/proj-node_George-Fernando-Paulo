@@ -6,6 +6,34 @@ export default class CursoController {
     this.curso = CursoModel;
   }
 
+  async update(cursoDTO) {
+    const {id, nome, categoria_ids} = cursoDTO;
+
+    try {
+      const c = await this.curso.findOne({
+        where: {
+          id: id
+        }, include: categoria
+      });
+      c.set({
+        nome: nome,
+      });
+      c.save();
+
+      c.Categoria.forEach(categoria_c => {
+        c.removeCategoria(categoria_c);
+      })
+
+      await categoria_ids.forEach(async categoria_id => {
+        const category = await categoria.findOne({where: {id:categoria_id}})
+        await c.addCategoria(category);
+      })
+
+    } catch(error){
+      console.log(error);
+    }
+  }
+
   async getByID(id) {
     const c = this.curso.findOne({
       where: {
