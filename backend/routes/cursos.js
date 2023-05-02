@@ -29,8 +29,8 @@ router.post(
     }
 
     //se os dados forem válidos, o sistema executará aqui
-    const { nome, ch } = req.body;
-    await cursoController.adicionar({ nome, ch });
+    const { nome, ch, categoria } = req.body;
+    await cursoController.adicionar({ nome, ch, categoria });
     res.status(201).send("Curso criado com sucesso!");
   }
 );
