@@ -6,8 +6,12 @@ const router = express.Router();
 
 router.get("/:curso_id", async (req, res) => {
   const curso_id = req.params.curso_id;
-  const cursos = await cursoController.getByID(curso_id)
-  res.json(cursos);
+  if (curso_id != 'undefined') {
+    const cursos = await cursoController.getByID(curso_id)
+    res.json(cursos);
+  } else {
+    res.send(404);
+  }
 });
 
 router.get("/", async (req, res) => {
