@@ -1,12 +1,15 @@
 import express from "express";
 import { user } from "../models/index.js";
 import { UserController } from "../controller/user.controller.js";
+import AuthMiddleware from "../middlewares/AuthMiddleware.js";
 
 const router = express.Router();
 const userController = new UserController(user);
 
-router.get("/", (req, res) => {
-  res.send("Lista de alunos GET!");
+router.get("/", AuthMiddleware  , async (req, res) => {
+  console.log(req.user_id)
+  const users = await userController.getAll();
+  res.json(users);
 });
 
 router.post("/create", async (req, res) => {
