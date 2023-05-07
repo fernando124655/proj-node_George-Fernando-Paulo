@@ -41,8 +41,8 @@ async function preencheTela() {
     const categorias = await consultaCategorias();
     console.log(categorias);
     const novoCursoHTML = `
-    <form name="curso_edit" method="post" id="curso_edit_form">
-        <div>
+   <form name="curso_edit" method="post" id="curso_edit_form">
+        <div class="edit_curso">
             <label for="nome"> Nome do Curso:</label>
             <input type="text" id="nome" name="nome" placeholder="Curso" required value="${curso.nome}">
             
@@ -60,14 +60,12 @@ async function preencheTela() {
                             ).join('')
                         }
                     </select>
-                    <button onclick="#">Remove</button>
+                    <button class="btn-remove" onclick="#">Remove</button>
                     `
                 ).join('')
             }
-            <button onclick="#">New Category </button>
-
-            
-            <button onclick="await updateCurso()">Salvar</button>
+            <button class="btn btn-add" onclick="#">New Category </button>            
+            <button class="btn btn-save" onclick="await updateCurso()">Salvar</button>
         </div>
     </form>
     `;

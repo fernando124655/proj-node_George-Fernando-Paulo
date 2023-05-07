@@ -1,10 +1,10 @@
-
-  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
 
 body {
-  width: 500px;
-  margin: 20px auto;
-  padding: 5px 50px;
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
   font-family: 'Lato', sans-serif;
 }
 
@@ -14,30 +14,56 @@ h2 {
 }
 
 .curso {
-  padding: 5px 10px 0 5px;
+  padding: 10px;
   border-bottom: 1px dashed #eee;
 }
 
-.btn-add {
-  position: fixed;
-  right: 5rem;
-  bottom: 5rem;
-  background-color: green;
-  width: 4rem;
-  height: 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 100%;
-  text-decoration: none;
-  font-size: 2rem;
-  color: #fff;
+.curso_edit{
+  margin: 5% 0;
 }
 
+.edit_curso{
+  width: 100%;
+  margin: 20px 0;
+  padding: 10px;
+}
+
+.btn-remove {
+  padding: 10px;
+  font-size: 15px;
+  background-color: #ff5a5a;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  display: inline-block;
+  margin-right: 10px;
+  }
+  
+  .btn-add {
+  padding: 10px;
+  font-size: 15px;
+  background-color: #5a9fff;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  display: inline-block;
+  margin-right: 10px;
+  }
+  
 input,
 textarea {
   width: 100%;
   padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  box-shadow: none;
+  border: 1px solid #ccc;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
   border-radius: 5px;
   box-shadow: none;
   border: 1px solid #ccc;
@@ -51,6 +77,19 @@ button {
   border-radius: 5px;
   border: none;
   float: right;
+}
+
+.btn {
+  padding: 10px;
+  font-size: 15px;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  margin-right: 20px;
+}
+
+.btn-save {
+  background-color: green;
 }
 
 .msg {
