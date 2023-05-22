@@ -1,5 +1,5 @@
 import express from "express";
-import alunos from "./alunos.js";
+import users from "./users.js";
 import cursos from "./cursos.js";
 import categoria from "./categoria.js"
 
@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
   res.send("Pagina inicial");
 });
 
-router.use("/alunos", alunos);
+router.use("/users", users);
 router.use("/cursos", cursos);
 router.use("/categoria", categoria)
 
