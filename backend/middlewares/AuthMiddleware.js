@@ -4,7 +4,6 @@ import { promisify } from "util";
 
 export default async (req, res, next) => {
   const authorization = req.headers.authorization;
-
   if (!authorization) {
     return res.status(401).json({
       error: true,
