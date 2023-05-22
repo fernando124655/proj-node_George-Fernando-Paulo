@@ -1,29 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-</head>
+    <!-- Customized Bootstrap Stylesheet -->
     <link href="css/estilo.css" rel="stylesheet">
+</head>
 <body>
-<div class="curso">
-    <h3>Criar Curso</h3>
-    <div>
-        <label for="nome" > Nome do Curso:</label>
-        <input type="text" id="nome" placeholder="Curso" required>
-        
-        <label for="ch" >Carga Horária:</label>
-        <input type="text" id="ch" placeholder="Carga Horária" required>
-
-        <label for="categoria" >Categoria:</label>
-        <select> id="categoria" placeholder="Categoria" required>
-            <option value="1">Um</option>
-            <option value="2">Dois</option>
-            <option value="3">Tres</option>
-            <option value="4">Quatro</option>
-        </select>
-
-        <button onclick="return false;" id="btn-criar" >Criar Curso</button>
+    <div class="curso">
+        <h3>Criar Curso</h3>
+        <a href="manage_courses.html">voltar</a>
         <div>
-        <script>
-        </script>
-</div>
+            <form name="criar_curso">
+            <label for="nome" > Nome do Curso:</label>
+            <input name="nome" type="text" id="nome" placeholder="Curso" required>
+            
+            <label for="ch" >Carga Horária:</label>
+            <input name="ch" type="text" id="ch" placeholder="Carga Horária" required>
+
+            <button id="submit_criar_curso" class="btn-criar" >Criar Curso</button>
+            </form>
+        </div>
+    </div>
+    <script src="js/manage-create-curso.js"></script>
 </body>            
+</html>

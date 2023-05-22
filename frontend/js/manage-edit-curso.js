@@ -1,3 +1,10 @@
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+const access_token = getCookie('access_token');
+
 const divCurso = document.querySelector("#curso");
 
 var params = location.search.substring(1).split("&").map(str => str.split('='));
@@ -13,7 +20,8 @@ async function update_course(name, ch, categories_ids) {
             "categoria_ids": categories_ids
         }),
         headers: {
-          "Content-type": "application/json; charset=UTF-8"
+          "Content-type": "application/json; charset=UTF-8",
+          "authorization": `Bearer ${access_token}`,
         }
     });
     console.log(response)
@@ -22,13 +30,21 @@ async function update_course(name, ch, categories_ids) {
 }
 
 async function consultaCursos() {
-    const response = await fetch(`http://localhost:3000/cursos/${params.curso_id}`);
+    const response = await fetch(`http://localhost:3000/cursos/${params.curso_id}`, {
+        headers: {
+            "authorization": `Bearer ${access_token}`
+        }
+    });
     const cursos = await response.json();
     return cursos;
 }
 
 async function consultaCategorias() {
-    const response = await fetch(`http://localhost:3000/categoria/`);
+    const response = await fetch(`http://localhost:3000/categoria/`, {
+        headers: {
+            "authorization": `Bearer ${access_token}`
+        }
+    });
     const categorias = await response.json();
     return categorias;
 }

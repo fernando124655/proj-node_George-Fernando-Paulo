@@ -1,10 +1,11 @@
 import express from "express";
 import { body, validationResult } from "express-validator";
 import { categoriaController } from "../controller/index.js";
+import AuthMiddleware from "../middlewares/AuthMiddleware.js";
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/", AuthMiddleware, async (req, res) => {
   const categoria = await categoriaController.getAll();
   res.json(categoria);
 });
@@ -15,7 +16,7 @@ router.post(
     //validação dos dados
     body("nome").trim().notEmpty().withMessage("O campo nome é obrigatório!"),
     body("descricao").trim().notEmpty().withMessage("O campo descrição é obrigatório!"),
-  ],
+  ], AuthMiddleware,
   async (req, res) => {
     // caso encontre erros, ficará nessa variável errors
     const errors = validationResult(req);

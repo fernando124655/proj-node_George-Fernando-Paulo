@@ -1,10 +1,11 @@
 import express from "express";
 import { body, validationResult } from "express-validator";
 import { cursoController } from "../controller/index.js";
+import AuthMiddleware from "../middlewares/AuthMiddleware.js";
 
 const router = express.Router();
 
-router.get("/:curso_id", async (req, res) => {
+router.get("/:curso_id", AuthMiddleware, async (req, res) => {
   const curso_id = req.params.curso_id;
   if (curso_id != 'undefined') {
     const cursos = await cursoController.getByID(curso_id)
@@ -14,7 +15,7 @@ router.get("/:curso_id", async (req, res) => {
   }
 });
 
-router.delete("/:curso_id", async (req, res) => {
+router.delete("/:curso_id", AuthMiddleware, async (req, res) => {
   const curso_id = req.params.curso_id;
   if (curso_id != 'undefined') {
     const cursos = await cursoController.delete(curso_id)
@@ -24,7 +25,7 @@ router.delete("/:curso_id", async (req, res) => {
   }
 });
 
-router.get("/", async (req, res) => {
+router.get("/", AuthMiddleware, async (req, res) => {
   const cursos = await cursoController.getAll();
   res.json(cursos);
 });
@@ -40,7 +41,7 @@ router.post(
       .isLength({ min: 2 })
       .withMessage("O campo ch deve ser numérico apenas"),
     body("categoria_ids").notEmpty().isArray().withMessage("O campo categoria_ids deve ser inteiro é obrigatório"),
-  ],
+  ], AuthMiddleware,
   async (req, res) => {
     // caso encontre erros, ficará nessa variável errors
     const errors = validationResult(req);
@@ -65,7 +66,7 @@ router.patch(
       .isLength({ min: 2 })
       .withMessage("O campo ch deve ser numérico apenas"),
     body("categoria_ids").notEmpty().isArray().withMessage("O campo categoria_ids deve ser inteiro é obrigatório"),
-  ],
+  ], AuthMiddleware,
   async (req, res) => {
     // caso encontre erros, ficará nessa variável errors
     const errors = validationResult(req);

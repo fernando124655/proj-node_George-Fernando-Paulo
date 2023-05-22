@@ -1,10 +1,18 @@
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+const access_token = getCookie('access_token');
+
 const divCursos = document.querySelector("#cursos");
 
 async function delete_course(course_id) {
   const response = await fetch(`http://localhost:3000/cursos/${course_id}`, {
       method: "DELETE",
       headers: {
-        "Content-type": "application/json; charset=UTF-8"
+        "Content-type": "application/json; charset=UTF-8",
+        "authorization": `Bearer ${access_token}`,
       }
   });
   console.log(response)
@@ -13,9 +21,23 @@ async function delete_course(course_id) {
 }
 
 async function consultaCursos() {
-  const response = await fetch("http://localhost:3000/cursos");
-  const cursos = await response.json();
-  return cursos;
+  console.log(access_token);
+  const fetch_json = {
+    headers: {
+      "authorization": `Bearer ${access_token}`,
+    }
+  };
+  console.log(fetch_json);
+  const response = await fetch("http://localhost:3000/cursos", fetch_json);
+  const response_json = await response.json();
+  console.log(response_json);
+
+  if(response.statusText == "Unauthorized"){
+    //alert("Login necessario");
+    //window.location.replace("/frontend/login.html");
+  }
+  //const cursos = await response.json();
+  return response_json;
 }
 
 async function preencheTela() {
@@ -35,9 +57,6 @@ async function preencheTela() {
   });
 
   var submit_delete_course = document.getElementsByClassName(`submit_deletar_curso`);
-  console.log(submit_delete_course)
-
-
   for (let submit of submit_delete_course) {
     console.log(submit)
   
