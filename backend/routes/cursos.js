@@ -14,6 +14,16 @@ router.get("/:curso_id", async (req, res) => {
   }
 });
 
+router.delete("/:curso_id", async (req, res) => {
+  const curso_id = req.params.curso_id;
+  if (curso_id != 'undefined') {
+    const cursos = await cursoController.delete(curso_id)
+    res.json(cursos);
+  } else {
+    res.send(404);
+  }
+});
+
 router.get("/", async (req, res) => {
   const cursos = await cursoController.getAll();
   res.json(cursos);

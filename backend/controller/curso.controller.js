@@ -7,7 +7,9 @@ export default class CursoController {
   }
 
   async update(cursoDTO) {
-    const {id, nome, categoria_ids} = cursoDTO;
+    const {id, nome, ch, categoria_ids} = cursoDTO;
+
+    const unique_categoria_ids = [...new Set(categoria_ids)]
 
     try {
       const c = await this.curso.findOne({
@@ -17,6 +19,7 @@ export default class CursoController {
       });
       c.set({
         nome: nome,
+        ch: ch,
       });
       c.save();
 
@@ -24,7 +27,7 @@ export default class CursoController {
         c.removeCategoria(categoria_c);
       })
 
-      await categoria_ids.forEach(async categoria_id => {
+      await unique_categoria_ids.forEach(async categoria_id => {
         const category = await categoria.findOne({where: {id:categoria_id}})
         await c.addCategoria(category);
       })
@@ -58,6 +61,20 @@ export default class CursoController {
       await categoria_ids.forEach(async categoria_id => {
         const category = await categoria.findOne({where: {id:categoria_id}})
         await c.addCategoria(category);
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async delete(cursoDTO) {
+    const [id] = cursoDTO;
+    try {
+      console.log(cursoDTO);
+      await this.curso.destroy({
+        where: {
+          id:id
+        }
       })
     } catch (error) {
       console.log(error);
